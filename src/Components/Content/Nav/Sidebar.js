@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavToggle } from "../../Context/NavToggleContext";
 
 const Sidebar = ({OnItemClick}) => {
+  const { isSidebar} = useNavToggle();
   const SidebarItems = [
     {
       title: "Search Stocks",
@@ -27,12 +29,12 @@ const Sidebar = ({OnItemClick}) => {
       icon: "bx bx-bookmark",
     },
     {
-      title: "Setting",
+      title: "Settings",
       icon: "bx bx-cog",
     },
   ];
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isSidebar? 'open': ''}`}>
       <ul className="side-list">
         {SidebarItems.map((e, index) => (
           <li key={index} onClick={()=>{OnItemClick(e.title)}} className="side-item">
